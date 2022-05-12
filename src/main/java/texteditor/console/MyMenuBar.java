@@ -4,10 +4,10 @@ import javax.swing.*;
 
 public class MyMenuBar {
 
-    JMenuBar menuBar;
-    JMenu menuFile;
-    JMenu menuEdit;
-    JMenuItem close;
+    private JMenuBar menuBar;
+    private JMenu menuFile;
+    private JMenu menuEdit;
+    private JMenuItem close;
 
     public MyMenuBar(JMenuBar menuBar, JMenu menuFile, JMenu menuEdit, JMenuItem close) {
         this.menuBar = menuBar;

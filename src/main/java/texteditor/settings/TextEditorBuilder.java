@@ -1,6 +1,7 @@
 package texteditor.settings;
 
 import texteditor.console.MyMenuBar;
+import texteditor.console.MyTextEditor;
 import texteditor.filechooser.FileOpener;
 import texteditor.filechooser.FileSaver;
 import texteditor.console.MyFrame;
@@ -38,7 +39,7 @@ public class TextEditorBuilder implements ActionListener {
         menuEdit.getMenuItems().forEach(item -> item.addActionListener(this));
         close.addActionListener(this);
 
-        myTextEditor.myFrame.buildFrame(myTextEditor.getMenuBar());
+        myTextEditor.getMyFrame().buildFrame(myTextEditor.getMenuBar());
     }
 
     @Override
@@ -58,22 +59,22 @@ public class TextEditorBuilder implements ActionListener {
         }
     }
     private void cut() {
-        myTextEditor.myFrame.getTextArea().cut();
+        myTextEditor.getMyFrame().getTextArea().cut();
     }
     private void copy() {
-        myTextEditor.myFrame.getTextArea().copy();
+        myTextEditor.getMyFrame().getTextArea().copy();
     }
     private void paste() {
-        myTextEditor.myFrame.getTextArea().paste();
+        myTextEditor.getMyFrame().getTextArea().paste();
     }
     private void save() {
         FileSaver fileSaver = new FileSaver(new JFileChooser("f:"));
         fileSaver.selectChosenFile();
-        fileSaver.saveToFile(myTextEditor.myFrame.getTextArea());
+        fileSaver.saveToFile(myTextEditor.getMyFrame().getTextArea());
     }
     private void print() {
         try {
-            myTextEditor.myFrame.getTextArea().print();
+            myTextEditor.getMyFrame().getTextArea().print();
         } catch (PrinterException e) {
             e.printStackTrace();
         }
@@ -81,13 +82,13 @@ public class TextEditorBuilder implements ActionListener {
     private void open() {
         FileOpener fileOpener = new FileOpener(new JFileChooser("f:"));
         fileOpener.selectChosenFile();
-        fileOpener.openFile(myTextEditor.myFrame.getTextArea());
+        fileOpener.openFile(myTextEditor.getMyFrame().getTextArea());
     }
     private void newDocument() {
-        myTextEditor.myFrame.getTextArea().setText("");
+        myTextEditor.getMyFrame().getTextArea().setText("");
     }
     private void close() {
-        myTextEditor.myFrame.show(false);
+        myTextEditor.getMyFrame().show(false);
     }
 
     public MyTextEditor getMyTextEditor() {

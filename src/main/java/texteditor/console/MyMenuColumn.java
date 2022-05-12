@@ -5,9 +5,9 @@ import java.util.Set;
 
 public class MyMenuColumn {
 
-    JMenu menu;
-    Set<JMenuItem> menuItems;
-    Set<String> menuOptions;
+    private JMenu menu;
+    private Set<JMenuItem> menuItems;
+    private Set<String> menuOptions;
 
     public MyMenuColumn(JMenu menu, Set<JMenuItem> menuItems, Set<String> menuOptions) {
         this.menu = menu;

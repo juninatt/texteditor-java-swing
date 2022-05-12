@@ -1,6 +1,4 @@
-package texteditor.settings;
-
-import texteditor.console.MyFrame;
+package texteditor.console;
 
 import javax.swing.*;
 
