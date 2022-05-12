@@ -1,6 +1,7 @@
 package texteditor.settings;
 
 import texteditor.console.MyMenuBar;
+import texteditor.filechooser.FileOpener;
 import texteditor.filechooser.FileSaver;
 import texteditor.console.MyFrame;
 import texteditor.console.MyMenuColumn;
@@ -78,7 +79,9 @@ public class TextEditorBuilder implements ActionListener {
         }
     }
     private void open() {
-
+        FileOpener fileOpener = new FileOpener(new JFileChooser("f:"));
+        fileOpener.selectChosenFile();
+        fileOpener.openFile(myTextEditor.myFrame.getTextArea());
     }
     private void newDocument() {
         myTextEditor.myFrame.getTextArea().setText("");
