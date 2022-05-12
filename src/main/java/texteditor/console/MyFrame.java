@@ -1,4 +1,4 @@
-package texteditor.frame;
+package texteditor.console;
 
 import javax.swing.*;
 

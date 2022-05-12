@@ -1,15 +1,16 @@
 package texteditor.settings;
 
-import texteditor.frame.MyFrame;
-import texteditor.frame.MyMenuBar;
+import texteditor.console.MyFrame;
+
+import javax.swing.*;
 
 public class MyTextEditor {
     MyFrame myFrame;
-    MyMenuBar myMenuBar;
+    JMenuBar menuBar;
 
-    public MyTextEditor(MyFrame myFrame, MyMenuBar myMenuBar) {
+    public MyTextEditor(MyFrame myFrame, JMenuBar menuBar) {
         this.myFrame = myFrame;
-        this.myMenuBar = myMenuBar;
+        this.menuBar = menuBar;
     }
 
     public MyFrame getMyFrame() {
@@ -20,11 +21,11 @@ public class MyTextEditor {
         this.myFrame = myFrame;
     }
 
-    public MyMenuBar getMyMenuBar() {
-        return myMenuBar;
+    public JMenuBar getMenuBar() {
+        return menuBar;
     }
 
-    public void setMyMenuBar(MyMenuBar myMenuBar) {
-        this.myMenuBar = myMenuBar;
+    public void setMenuBar(JMenuBar menuBar) {
+        this.menuBar = menuBar;
     }
 }
