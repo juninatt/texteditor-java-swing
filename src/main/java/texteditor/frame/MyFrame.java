@@ -4,10 +4,10 @@ import javax.swing.*;
 
 public class MyFrame {
 
-    JFrame frame;
-    JTextArea textArea;
-    int width;
-    int height;
+    private JFrame frame;
+    private JTextArea textArea;
+    private int width;
+    private int height;
 
     public MyFrame(JFrame frame, JTextArea textArea, int width, int height) {
         this.frame = frame;
@@ -20,8 +20,13 @@ public class MyFrame {
         frame.setJMenuBar(menuBar);
         frame.add(textArea);
         frame.setSize(width, height);
-        frame.setVisible(true);
+        show(true);
     }
+
+    public void show(boolean visible) {
+        frame.setVisible(visible);
+    }
+
     public JFrame getFrame() {
         return frame;
     }

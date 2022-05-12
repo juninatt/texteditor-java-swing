@@ -1,17 +1,14 @@
 package texteditor.frame;
 
 import javax.swing.*;
-import java.util.HashSet;
 import java.util.Set;
 
 public class MyMenuBar {
 
-    JMenuBar menuBar;
-    JMenu menuOne;
-    JMenu menuTwo;
-    JMenuItem close;
-
-    Set<JMenuItem> menuItems = new HashSet<>();
+    private JMenuBar menuBar;
+    private JMenu menuOne;
+    private JMenu menuTwo;
+    private JMenuItem close;
 
     public MyMenuBar(JMenuBar menuBar, JMenu menuOne, JMenu menuTwo, JMenuItem close) {
         this.menuBar = menuBar;
@@ -19,7 +16,7 @@ public class MyMenuBar {
         this.menuTwo = menuTwo;
         this.close = close;
     }
-    public void addMenuOptionsToMenu(Set<String> menuOptions, JMenu menu) {
+    public void addMenuOptionsToMenu(Set<String> menuOptions, Set<JMenuItem> menuItems, JMenu menu) {
         menuOptions.forEach(option -> menuItems.add(new JMenuItem(option)));
         menuItems.forEach(menu::add);
     }
@@ -35,14 +32,6 @@ public class MyMenuBar {
 
     public void setMenuBar(JMenuBar menuBar) {
         this.menuBar = menuBar;
-    }
-
-    public Set<JMenuItem> getMenuItems() {
-        return menuItems;
-    }
-
-    public void setMenuItems(Set<JMenuItem> menuItems) {
-        this.menuItems = menuItems;
     }
 
     public JMenu getMenuOne() {
