@@ -53,6 +53,7 @@ public class TextEditorBuilder implements ActionListener {
         myTextEditor.myFrame.getTextArea().paste();
     }
     private void save() {
+
     }
     private void print() {
         try {
@@ -69,5 +70,13 @@ public class TextEditorBuilder implements ActionListener {
     }
     private void close() {
         myTextEditor.myFrame.show(false);
+    }
+
+    public MyTextEditor getMyTextEditor() {
+        return myTextEditor;
+    }
+
+    public void setMyTextEditor(MyTextEditor myTextEditor) {
+        this.myTextEditor = myTextEditor;
     }
 }

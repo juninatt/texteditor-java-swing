@@ -11,4 +11,20 @@ public class MyTextEditor {
         this.myFrame = myFrame;
         this.myMenuBar = myMenuBar;
     }
+
+    public MyFrame getMyFrame() {
+        return myFrame;
+    }
+
+    public void setMyFrame(MyFrame myFrame) {
+        this.myFrame = myFrame;
+    }
+
+    public MyMenuBar getMyMenuBar() {
+        return myMenuBar;
+    }
+
+    public void setMyMenuBar(MyMenuBar myMenuBar) {
+        this.myMenuBar = myMenuBar;
+    }
 }
