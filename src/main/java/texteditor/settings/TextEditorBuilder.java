@@ -1,11 +1,11 @@
 package texteditor.settings;
 
+import texteditor.console.MyFrame;
 import texteditor.console.MyMenuBar;
+import texteditor.console.MyMenuColumn;
 import texteditor.console.MyTextEditor;
 import texteditor.filechooser.FileOpener;
 import texteditor.filechooser.FileSaver;
-import texteditor.console.MyFrame;
-import texteditor.console.MyMenuColumn;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
