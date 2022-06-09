@@ -6,6 +6,7 @@ import org.junit.jupiter.api.extension.ParameterResolutionException;
 import org.junit.jupiter.api.extension.ParameterResolver;
 import texteditor.console.MyMenuBar;
 
+import javax.swing.*;
 import java.lang.reflect.Parameter;
 import java.util.HashMap;
 import java.util.Map;
@@ -17,6 +18,7 @@ public class MyMenuBarParameterResolver implements ParameterResolver {
 
     public MyMenuBarParameterResolver() {
         Map<String, MyMenuBar> menuBars = new HashMap<>();
+        menuBars.put("My Menu Bar", new MyMenuBar(new JMenuBar(), new JMenu(), new JMenu(), new JMenuItem()));
         this.menuBars = menuBars;
     }
 
