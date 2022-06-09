@@ -69,6 +69,7 @@ public class TextEditorBuilder implements ActionListener {
 
         /*  Builds and displays the texteditor based on the values given to it in the code above  */
         myTextEditor.getMyFrame().buildFrame(myTextEditor.getMenuBar());
+        myTextEditor.getMyFrame().show(true);
     }
 
     /**

@@ -34,7 +34,6 @@ public class MyFrame {
         frame.setJMenuBar(menuBar);
         frame.add(textArea);
         frame.setSize(width, height);
-        show(true);
     }
 
     /**
