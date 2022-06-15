@@ -3,9 +3,7 @@ package texteditor.settings;
 import texteditor.console.MyFrame;
 import texteditor.console.MyMenuBar;
 import texteditor.console.MyMenuColumn;
-import texteditor.console.MyTextEditor;
-import texteditor.filechooser.FileOpener;
-import texteditor.filechooser.FileSaver;
+import texteditor.filechooser.FileHandler;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -21,55 +19,46 @@ import java.util.Set;
 public class TextEditorBuilder implements ActionListener {
 
     MyFrame myFrame;
-    MyMenuColumn menuFile;
-    MyMenuColumn menuEdit;
-    JMenuItem close;
+
+    Set<JMenu> menus;
+    Set<JMenuItem> menuItems;
+
     MyMenuBar myMenuBar;
 
-    MyTextEditor myTextEditor;
+    MyMenuColumn myMenuColumnFile;
+    MyMenuColumn myMenuColumnEdit;
 
-    FileSaver fileSaver;
-    FileOpener fileOpener;
+    FileHandler fileHandler;
 
     /**
      * A simple no noarg-constructor to set the values of the text-editor
      */
     public TextEditorBuilder() {
 
-        /*  Creates an instance of MyFrame-class with a frame, text-field, width and length  */
-        myFrame = new MyFrame(new JFrame("TextEditor"), new JTextArea(), 500, 500);
+        myFrame = new MyFrame(new JFrame("TextEditor"), new JTextArea());
+        myFrame.getFrame().setSize(500, 500);
 
-        /*  Creates an instance of MyMenuColumn-class with a menu named 'File' that holds options 'New', 'Open', 'Save' and 'Print'  */
-        menuFile = new MyMenuColumn(new JMenu("File"), new HashSet<>(), Set.of("New", "Open", "Save", "Print"));
+        myMenuColumnFile = new MyMenuColumn(new JMenu("File"), new HashSet<>(), Set.of("New", "Open", "Save", "Print"));
+        myMenuColumnEdit = new MyMenuColumn(new JMenu("Edit"), new HashSet<>(), Set.of("cut", "copy", "paste"));
 
-        /*  Creates an instance of MyMenuColumn-class with a menu named 'Edit' that holds the options 'cut', 'copy' and 'paste'  */
-        menuEdit = new MyMenuColumn(new JMenu("Edit"), new HashSet<>(), Set.of("cut", "copy", "paste"));
+        menus = new HashSet<>();
+        menus.add(myMenuColumnFile.getMenu());
+        menus.add(myMenuColumnEdit.getMenu());
 
-        /*  Creates a Close-button  */
-        close = new JMenuItem("Close");
+        menuItems = new HashSet<>();
+        menuItems.add(new JMenuItem("Close"));
 
-        /*  Creates an instance of MyMenuBar-class with the File-menu, Edit-menu och Close-button  */
-        myMenuBar = new MyMenuBar(new JMenuBar(), menuFile.getMenu(), menuEdit.getMenu(), close);
+        myMenuBar = new MyMenuBar(new JMenuBar(), menus, menuItems);
+        myFrame.getFrame().setJMenuBar(myMenuBar.getMenuBar());
 
-        /*  Creates an instance of MyTextEditor-class with the values from myFrame and the menuBar in myMenuBar  */
-        myTextEditor = new MyTextEditor(myFrame, myMenuBar.getMenuBar());
+        fileHandler = new FileHandler(new JFileChooser());
 
-        menuFile.connectOptionsToMenu();
-        menuEdit.connectOptionsToMenu();
-        myMenuBar.addBars();
 
-        /*  Creates an instance of FileOpener-class with a JFileChooser pointing to the users default directory  */
-        fileSaver = new FileSaver(new JFileChooser());
-        fileOpener = new FileOpener(new JFileChooser());
+        myMenuColumnFile.getMenuItems().forEach(item -> item.addActionListener(this));
+        myMenuColumnEdit.getMenuItems().forEach(item -> item.addActionListener(this));
+        menuItems.forEach(item -> item.addActionListener(this));
 
-        /*  Register menu components with the ActionListener in order for the user to interact with the menus  */
-        menuFile.getMenuItems().forEach(item -> item.addActionListener(this));
-        menuEdit.getMenuItems().forEach(item -> item.addActionListener(this));
-        close.addActionListener(this);
-
-        /*  Builds and displays the texteditor based on the values given to it in the code above  */
-        myTextEditor.getMyFrame().buildFrame(myTextEditor.getMenuBar());
-        myTextEditor.getMyFrame().show(true);
+        myFrame.getFrame().setVisible(true);
     }
 
     /**
@@ -97,29 +86,29 @@ public class TextEditorBuilder implements ActionListener {
      * Copies and then removes the selected characters from the text-field.
      */
     private void cut() {
-        myTextEditor.getMyFrame().getTextArea().cut();
+        myFrame.getTextArea().cut();
     }
 
     /**
      * Copies the selected characters in the text-field.
      */
     private void copy() {
-        myTextEditor.getMyFrame().getTextArea().copy();
+        myFrame.getTextArea().copy();
     }
 
     /**
      * Pastes any copied text to the text-field.
      */
     private void paste() {
-        myTextEditor.getMyFrame().getTextArea().paste();
+        myFrame.getTextArea().paste();
     }
 
     /**
      * Saves the content of the text-field to a new file.
      */
     private void save() {
-        fileSaver.selectChosenFile();
-        fileSaver.saveToFile(myTextEditor.getMyFrame().getTextArea());
+        fileHandler.getSavePath();
+        fileHandler.saveText(myFrame.getTextArea());
     }
 
     /**
@@ -127,7 +116,7 @@ public class TextEditorBuilder implements ActionListener {
      */
     private void print() {
         try {
-            myTextEditor.getMyFrame().getTextArea().print();
+            myFrame.getTextArea().print();
         } catch (PrinterException e) {
             e.printStackTrace();
         }
@@ -137,29 +126,21 @@ public class TextEditorBuilder implements ActionListener {
      * Copies the content of the selected file to the text-field.
      */
     private void open() {
-        fileOpener.selectChosenFile();
-        fileOpener.openFile(myTextEditor.getMyFrame().getTextArea());
+        fileHandler.getOpenPath();
+        fileHandler.openFile(myFrame.getTextArea());
     }
 
     /**
      * Removes any text from the text-field.
      */
     private void newDocument() {
-        myTextEditor.getMyFrame().getTextArea().setText("");
+        myFrame.getTextArea().setText("");
     }
 
     /**
      * Closes the text-editor.
      */
     private void close() {
-        myTextEditor.getMyFrame().show(false);
-    }
-
-    public MyTextEditor getMyTextEditor() {
-        return myTextEditor;
-    }
-
-    public void setMyTextEditor(MyTextEditor myTextEditor) {
-        this.myTextEditor = myTextEditor;
+        myFrame.getFrame().setVisible(false);
     }
 }
