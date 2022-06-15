@@ -12,23 +12,14 @@ public class MyMenuColumn {
     private Set<JMenuItem> menuItems;
     private Set<String> menuOptions;
 
-    /**
-     * Constructor that initializes all fields.
-     * @param menu Represents a pull-down-menu assigned to the menu bar
-     * @param menuItems Is the list of components to fill the menu, that the user can interact with.
-     * @param menuOptions Is the list of options that will be applied to the components in the menu.
-     */
     public MyMenuColumn(JMenu menu, Set<JMenuItem> menuItems, Set<String> menuOptions) {
         this.menu = menu;
         this.menuItems = menuItems;
         this.menuOptions = menuOptions;
+        connectOptionsToMenu();
     }
 
-    /**
-     * Method that iterates Set{@link #menuOptions} and for each option creates a new component
-     * to which it applies its value and adds to Set{@link #menuItems}.
-     */
-    public void connectOptionsToMenu() {
+    private void connectOptionsToMenu() {
         menuOptions.forEach(option -> menuItems.add(new JMenuItem(option)));
         menuItems.forEach(menu::add);
     }
