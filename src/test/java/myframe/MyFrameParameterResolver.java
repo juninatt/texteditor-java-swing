@@ -18,8 +18,8 @@ public class MyFrameParameterResolver implements ParameterResolver {
 
     public MyFrameParameterResolver() {
         Map<String, MyFrame> frames = new HashMap<>();
-        frames.put("Large Frame", new MyFrame(new JFrame("Large Frame"), new JTextArea(), 1000, 1000));
-        frames.put("Small Frame", new MyFrame(new JFrame("Small Frame"), new JTextArea(), 50, 50));
+        frames.put("Large Frame", new MyFrame(new JFrame("Large Frame"), new JTextArea()));
+        frames.put("Small Frame", new MyFrame(new JFrame("Small Frame"), new JTextArea()));
         this.frames = frames;
     }
 

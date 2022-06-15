@@ -43,7 +43,7 @@ public class MyFrameTest {
 
         @Test
         @DisplayName("has no menu-bar before build is called")
-        void frameShouldNotHaveMenuBarBeforeBuildIsCalled () {
+        void frameShouldNotHaveMenuBarBeforeBuildIsCalled() {
             assertThat(largeFrame.getFrame().getJMenuBar()).isNull();
         }
     }
@@ -52,35 +52,16 @@ public class MyFrameTest {
     @DisplayName("size")
     class MyFrameSizeTests {
 
-        @Test
-        @DisplayName("has the width passed by user")
-        void frameShouldHaveWidthPassedByUser() {
-            assertThat(largeFrame.getWidth()).isEqualTo(1000);
-        }
+        @Nested
+        @DisplayName("menu-bar")
+        class MyFrameMenuBarTests {
 
-        @Test
-        @DisplayName("has the height passed by user")
-        void frameShouldHaveHeightPassedByUser() {
-            assertThat(largeFrame.getHeight()).isEqualTo(1000);
-        }
-    }
+            JMenuBar jMenuBar;
 
-    @Nested
-    @DisplayName("menu-bar")
-    class MyFrameMenuBarTests {
-
-        JMenuBar jMenuBar;
-
-        @BeforeEach
-        void init() {
-            this.jMenuBar = new JMenuBar();
-        }
-
-        @Test
-        @DisplayName("is not null after calling build")
-        void frameMenuBarShouldNotBeNull() {
-            smallFrame.buildFrame(new JMenuBar());
-            assertThat(smallFrame.getFrame().getJMenuBar()).isNotNull();
+            @BeforeEach
+            void init() {
+                this.jMenuBar = new JMenuBar();
+            }
         }
     }
 }

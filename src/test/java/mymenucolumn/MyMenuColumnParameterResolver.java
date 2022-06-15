@@ -9,6 +9,7 @@ import texteditor.console.MyMenuColumn;
 import javax.swing.*;
 import java.lang.reflect.Parameter;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Objects;
 
@@ -18,7 +19,7 @@ public class MyMenuColumnParameterResolver implements ParameterResolver {
 
     public MyMenuColumnParameterResolver() {
         Map<String, MyMenuColumn> columns = new HashMap<>();
-        columns.put("My Menu Column", new MyMenuColumn(new JMenu(), null, null));
+        columns.put("My Menu Column", new MyMenuColumn(new JMenu(), new HashSet<>(), new HashSet<>()));
         this.columns = columns;
     }
 
